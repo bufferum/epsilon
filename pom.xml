@@ -1,113 +1,130 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <project
     xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>bufferum</groupId>
-    <artifactId>epsilon</artifactId>
+    <artifactId>epsilon_windows_FXML</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>epsilon</name>
-    <url>http://www.example.com</url>
+    <name>Epsilon</name>
     <packaging>jar</packaging>
+    <description>My desktop application - Epsilon</description>
 
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <java.version>20</java.version>
-		<spring.version>3.1.4</spring.version>
+        <spring_version>6.1.1</spring_version>
+        <spring_version_starter>3.1.4</spring_version_starter>
     </properties>
 
-
     <dependencies>
-
-		<!-- jakarta.servlet-api -->
-		<!-- API для сервлетов -->
         <dependency>
-          	<groupId>jakarta.servlet</groupId>
-          	<artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
-            <scope>provided</scope>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>13</version>
         </dependency>
 
         <!-- mysql-connector-java -->
-		<!-- Нужен для подключеня к базе данных -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.33</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- commons-codec -->
-		<!-- Нужен для хеширования -->
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.16.0</version>
-		</dependency>
-
-		<!-- imgscalr -->
-		<!-- Нужен для превращения img -> webp -->
-		<dependency>
-			<groupId>org.imgscalr</groupId>
-			<artifactId>imgscalr-lib</artifactId>
-			<version>4.2</version>
-		</dependency>
-
-		<!-- spring-boot-starter-thymeleaf -->
-		<!-- Шаблонизатор -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
-		<!-- spring-boot-starter-tomcat -->
-		<!-- Нужен для создания сервера(localhost) -->
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <version>${spring.version}</version>
-            <scope>provided</scope>
+        <!-- Нужен для подключеня к базе данных  -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
         </dependency>
 
-		<!-- spring-boot-starter-web -->
-		<!-- Нужен для создания контроллеров -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+        <!-- spring-core  -->
+        <!-- Нужен для работы spring -->
+        <!-- <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency> -->
+
+        <!-- spring-beans -->
+        <!-- Нужен для создания бинов -->
+        <!-- <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency> -->
+
+        <!-- spring-boot  -->
+        <!-- Нужен для работы spring -->
+        <!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>3.2.0</version>
+        </dependency> -->
+
+        <!-- spring-context -->
+		<!-- Нужен для создания контекстов -->
+        <!-- <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency> -->
+
+        <!-- jakarta.servlet-api -->
+		<!-- API для сервлетов -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0-M1</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
 
+    <repositories>
+        <repository>
+            <id>gluon-releases</id>
+            <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
+
     <build>
-        <pluginManagement>
-            <plugins>
+        <plugins>
 
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>3.0.0</version>
-                    <configuration>
-                        <mainClass>epsilon.Panel</mainClass>
-                    </configuration>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.6</version>
+                <executions>
+                    <execution>
+                        <!-- Default configuration for running -->
+                        <!-- Usage: mvn clean javafx:run -->
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>epsilon.Panel</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-            </plugins>
-        </pluginManagement>
+        </plugins>
     </build>
+
+
+    <!-- <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>3.1.4</version>
+    </parent> -->
 
 
 </project>
